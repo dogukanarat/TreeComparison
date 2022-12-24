@@ -23,7 +23,6 @@ TEST(AvlTreeTest, InsertOne)
 
     EXPECT_NE(tree.root, nullptr);
     EXPECT_EQ(tree.root->key, 1);
-    EXPECT_EQ(tree.root->data, 1);
     EXPECT_EQ(tree.root->left, nullptr);
     EXPECT_EQ(tree.root->right, nullptr);
 }
@@ -42,11 +41,9 @@ TEST(AvlTreeTest, InsertTwoBigger)
 
     EXPECT_NE(tree.root, nullptr);
     EXPECT_EQ(tree.root->key, 1);
-    EXPECT_EQ(tree.root->data, 1);
     EXPECT_EQ(tree.root->left, nullptr);
     EXPECT_NE(tree.root->right, nullptr);
     EXPECT_EQ(tree.root->right->key, 2);
-    EXPECT_EQ(tree.root->right->data, 2);
     EXPECT_EQ(tree.root->right->left, nullptr);
     EXPECT_EQ(tree.root->right->right, nullptr);
 
@@ -66,10 +63,8 @@ TEST(AvlTreeTest, InsertTwoSmaller)
 
     EXPECT_NE(tree.root, nullptr);
     EXPECT_EQ(tree.root->key, 2);
-    EXPECT_EQ(tree.root->data, 2);
     EXPECT_NE(tree.root->left, nullptr);
     EXPECT_EQ(tree.root->left->key, 1);
-    EXPECT_EQ(tree.root->left->data, 1);
     EXPECT_EQ(tree.root->left->left, nullptr);
     EXPECT_EQ(tree.root->left->right, nullptr);
     EXPECT_EQ(tree.root->right, nullptr);
@@ -92,15 +87,12 @@ TEST(AvlTreeTest, InsertThree)
 
     EXPECT_NE(tree.root, nullptr);
     EXPECT_EQ(tree.root->key, 2);
-    EXPECT_EQ(tree.root->data, 2);
     EXPECT_NE(tree.root->left, nullptr);
     EXPECT_EQ(tree.root->left->key, 1);
-    EXPECT_EQ(tree.root->left->data, 1);
     EXPECT_EQ(tree.root->left->left, nullptr);
     EXPECT_EQ(tree.root->left->right, nullptr);
     EXPECT_NE(tree.root->right, nullptr);
     EXPECT_EQ(tree.root->right->key, 3);
-    EXPECT_EQ(tree.root->right->data, 3);
     EXPECT_EQ(tree.root->right->left, nullptr);
     EXPECT_EQ(tree.root->right->right, nullptr);
 
@@ -122,15 +114,12 @@ TEST(AvlTreeTest, InsertThreeReversed)
 
     EXPECT_NE(tree.root, nullptr);
     EXPECT_EQ(tree.root->key, 2);
-    EXPECT_EQ(tree.root->data, 2);
     EXPECT_NE(tree.root->left, nullptr);
     EXPECT_EQ(tree.root->left->key, 1);
-    EXPECT_EQ(tree.root->left->data, 1);
     EXPECT_EQ(tree.root->left->left, nullptr);
     EXPECT_EQ(tree.root->left->right, nullptr);
     EXPECT_NE(tree.root->right, nullptr);
     EXPECT_EQ(tree.root->right->key, 3);
-    EXPECT_EQ(tree.root->right->data, 3);
     EXPECT_EQ(tree.root->right->left, nullptr);
     EXPECT_EQ(tree.root->right->right, nullptr);
 
@@ -152,15 +141,12 @@ TEST(AvlTreeTest, InsertThreeUnbalanced)
 
     EXPECT_NE(tree.root, nullptr);
     EXPECT_EQ(tree.root->key, 2);
-    EXPECT_EQ(tree.root->data, 2);
     EXPECT_NE(tree.root->left, nullptr);
     EXPECT_EQ(tree.root->left->key, 1);
-    EXPECT_EQ(tree.root->left->data, 1);
     EXPECT_EQ(tree.root->left->left, nullptr);
     EXPECT_EQ(tree.root->left->right, nullptr);
     EXPECT_NE(tree.root->right, nullptr);
     EXPECT_EQ(tree.root->right->key, 3);
-    EXPECT_EQ(tree.root->right->data, 3);
     EXPECT_EQ(tree.root->right->left, nullptr);
     EXPECT_EQ(tree.root->right->right, nullptr);
 
@@ -182,19 +168,15 @@ TEST(AvlTreeTest, InsertFour)
 
     EXPECT_NE(tree.root, nullptr);
     EXPECT_EQ(tree.root->key, 2);
-    EXPECT_EQ(tree.root->data, 2);
     EXPECT_NE(tree.root->left, nullptr);
     EXPECT_EQ(tree.root->left->key, 1);
-    EXPECT_EQ(tree.root->left->data, 1);
     EXPECT_EQ(tree.root->left->left, nullptr);
     EXPECT_EQ(tree.root->left->right, nullptr);
     EXPECT_NE(tree.root->right, nullptr);
     EXPECT_EQ(tree.root->right->key, 3);
-    EXPECT_EQ(tree.root->right->data, 3);
     EXPECT_EQ(tree.root->right->left, nullptr);
     EXPECT_NE(tree.root->right->right, nullptr);
     EXPECT_EQ(tree.root->right->right->key, 4);
-    EXPECT_EQ(tree.root->right->right->data, 4);
     EXPECT_EQ(tree.root->right->right->left, nullptr);
     EXPECT_EQ(tree.root->right->right->right, nullptr);
 
@@ -217,22 +199,17 @@ TEST(AvlTreeTest, InsertFive)
 
     EXPECT_NE(tree.root, nullptr);
     EXPECT_EQ(tree.root->key, 2);
-    EXPECT_EQ(tree.root->data, 2);
     EXPECT_EQ(tree.root->left->key, 1);
-    EXPECT_EQ(tree.root->left->data, 1);
     EXPECT_EQ(tree.root->left->left, nullptr);
     EXPECT_EQ(tree.root->left->right, nullptr);
     EXPECT_NE(tree.root->right, nullptr);
     EXPECT_EQ(tree.root->right->key, 4);
-    EXPECT_EQ(tree.root->right->data, 4);
     EXPECT_NE(tree.root->right->left, nullptr);
     EXPECT_EQ(tree.root->right->left->key, 3);
-    EXPECT_EQ(tree.root->right->left->data, 3);
     EXPECT_EQ(tree.root->right->left->left, nullptr);
     EXPECT_EQ(tree.root->right->left->right, nullptr);
     EXPECT_NE(tree.root->right->right, nullptr);
     EXPECT_EQ(tree.root->right->right->key, 5);
-    EXPECT_EQ(tree.root->right->right->data, 5);
     EXPECT_EQ(tree.root->right->right->left, nullptr);
     EXPECT_EQ(tree.root->right->right->right, nullptr); 
 }
@@ -254,16 +231,10 @@ TEST(AvlTreeTest, InsertSix)
     AvlTree_Insert(&tree, 6, 6);
 
     EXPECT_EQ(tree.root->key, 4);
-    EXPECT_EQ(tree.root->data, 4);
     EXPECT_EQ(tree.root->left->key, 2);
-    EXPECT_EQ(tree.root->left->data, 2);
     EXPECT_EQ(tree.root->left->left->key, 1);
-    EXPECT_EQ(tree.root->left->left->data, 1);
     EXPECT_EQ(tree.root->left->right->key, 3);
-    EXPECT_EQ(tree.root->left->right->data, 3);
     EXPECT_EQ(tree.root->right->key, 5);
-    EXPECT_EQ(tree.root->right->data, 5);
     EXPECT_EQ(tree.root->right->right->key, 6);
-    EXPECT_EQ(tree.root->right->right->data, 6);
 
 }

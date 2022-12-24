@@ -233,6 +233,8 @@ void AvlTree_Insert(AvlTree *self, int32_t key, int32_t data)
     AvlTreeNode *next = NULL;
     AvlTreeNode *last = NULL;
 
+    data = 1;
+
     /* Well, there must be a first case */
     if (self->root == NULL)
     {
@@ -257,7 +259,9 @@ void AvlTree_Insert(AvlTree *self, int32_t key, int32_t data)
             }
             else if (key == next->key)
             {
-                // TODO: Handle duplicate keys
+                next->data += data;
+
+                return;
             }
         }
 
@@ -333,4 +337,17 @@ int32_t AvlTree_GetNodeHeight(AvlTreeNode *node)
     {
         return 0;
     }
+}
+
+// AvlTree_Print prints all subset of node to console stylish
+void AvlTree_PrintNode(AvlTreeNode *node)
+{
+    
+}
+
+// AvlTree_Print prints all tree node to console stylish
+void AvlTree_Print(AvlTree *self)
+{
+
+
 }
