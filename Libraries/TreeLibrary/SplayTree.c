@@ -202,6 +202,8 @@ void SplayTree_Insert(SplayTree* self, int32_t key, int32_t data)
     SplayTreeNode *next = NULL;
     SplayTreeNode *last = NULL;
 
+    data = 1;
+
     /* Well, there must be a first case */
     if (self->root == NULL)
     {
@@ -226,7 +228,11 @@ void SplayTree_Insert(SplayTree* self, int32_t key, int32_t data)
             }
             else if (key == next->key)
             {
-                // TODO: Handle duplicate keys
+                next->data += data;
+
+                SplayTree_Splay(&self->root, key);
+                
+                return;
             }
         }
 
