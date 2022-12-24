@@ -21,6 +21,7 @@ add_executable(
     UnitTest
     Main.cpp
     AvlTreeTest.cpp
+    SplayTree.cpp
 )
 
 target_compile_definitions(UnitTest PUBLIC CTEST)

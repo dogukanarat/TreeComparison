@@ -2,6 +2,36 @@
 #include <string.h>
 #include <stdlib.h>
 
+// The AvlTree_DestroyNode function destroys a node recursively.
+static inline AvlTreeNode* AvlTree_CreateNode(int32_t key, int32_t data);
+
+// The AvlTree_GetHeight function returns the height of an AvlTree struct.
+static inline int32_t AvlTree_GetHeight(AvlTree* self);
+
+// The AvlTree_GetNodeHeight function returns the height of a node.
+static inline int32_t AvlTree_GetNodeHeight(AvlTreeNode* node);
+
+// The AvlTree_GetBalanceFactor function returns the balance factor of a node.
+static inline int AvlTree_GetBalanceFactor(AvlTreeNode* node);
+
+// The AvlTree_Balance function balances an AvlTree struct.
+static inline void AvlTree_Balance(AvlTree* self);
+
+// The AvlTree_BalanceNode function balances a node.
+static inline AvlTreeNode* AvlTree_BalanceNode(AvlTreeNode* node);
+
+// The AvlTree_RotateLeftLeft function rotates a node to the left.
+static inline AvlTreeNode* AvlTree_RotateLeftLeft(AvlTreeNode* node);
+
+// The AvlTree_RotateRightRight function rotates a node to the right.
+static inline AvlTreeNode* AvlTree_RotateRightRight(AvlTreeNode* node);
+
+// The AvlTree_RotateLeftRight function rotates a node to the left and then to the right.
+static inline AvlTreeNode* AvlTree_RotateLeftRight(AvlTreeNode* node);
+
+// The AvlTree_RotateRightLeft function rotates a node to the right and then to the left.
+static inline AvlTreeNode* AvlTree_RotateRightLeft(AvlTreeNode* node);
+
 AvlTreeNode *AvlTree_RotateLeftLeft(AvlTreeNode *node)
 {
     if (node == NULL)
