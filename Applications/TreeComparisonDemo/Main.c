@@ -92,11 +92,16 @@ int32_t Main_ConvertStringToIntArray(char *stringBuffer, int32_t** array, size_t
 
 int main(int argc, char **argv)
 {
-    AvlTree avlTree;
-    SplayTree splayTree;
+    AvlTree avlTree1;
+    SplayTree splayTree1;
+    AvlTree avlTree2;
+    SplayTree splayTree2;
 
-    AvlTree_Init(&avlTree);
-    AvlTree_Init(&splayTree);
+    AvlTree_Init(&avlTree1);
+    SplayTree_Init(&splayTree1);
+
+    AvlTree_Init(&avlTree2);
+    SplayTree_Init(&splayTree2);
 
     int resultReadFile1 = Main_ReadTextFile("input1.txt", (char **)&file1Content, &file1Size);
     int resultReadFile2 = Main_ReadTextFile("input2.txt", (char **)&file2Content, &file2Size);
@@ -104,25 +109,57 @@ int main(int argc, char **argv)
     Main_ConvertStringToIntArray(file1Content, &inputArray1, &inputArray1Size);
     Main_ConvertStringToIntArray(file2Content, &inputArray2, &inputArray2Size);
 
-    // Print inputArray1
+    // Insert inputArray1
     for(int counter = 0; counter < inputArray1Size; counter++)
     {
-        printf("%d ", inputArray1[counter]);
-        AvlTree_Insert(&avlTree, inputArray1[counter], 1);
-        SplayTree_Insert(&splayTree, inputArray1[counter], 1);
+        // printf("%d ", inputArray1[counter]);
+        AvlTree_Insert(&avlTree1, inputArray1[counter], 1);
+        SplayTree_Insert(&splayTree1, inputArray1[counter], 1);
     }
 
-    printf("\n");
-
-    // Print inputArray2
+    // Insert inputArray2
     for(int counter = 0; counter < inputArray2Size; counter++)
     {
-        printf("%d ", inputArray2[counter]);
+        // printf("%d ", inputArray1[counter]);
+        AvlTree_Insert(&avlTree2, inputArray2[counter], 1);
+        SplayTree_Insert(&splayTree2, inputArray2[counter], 1);
     }
 
-    printf("\n");
+    printf("Output1: \n");
 
-    
+    // Print avlTree1
+    printf("Avl Tree: \n");
+    AvlTree_Print(&avlTree1);
+    printf("\n");
+    printf("Total Cost: %d\n", AvlTree_GetTotalCost(&avlTree1));
+
+    printf("\n\n");
+
+    // Print splayTree1
+    printf("Splay Tree: \n");
+    SplayTree_Print(&splayTree1);
+    printf("\n");
+    printf("Total Cost: %d\n", SplayTree_GetTotalCost(&splayTree1));
+
+    printf("\n\n");
+
+    printf("Output2: \n");
+
+    // Print avlTree2
+    printf("Avl Tree: \n");
+    AvlTree_Print(&avlTree2);
+    printf("\n");
+    printf("Total Cost: %d\n", AvlTree_GetTotalCost(&avlTree2));
+
+    printf("\n\n");
+
+    // Print splayTree2
+    printf("Splay Tree: \n");
+    SplayTree_Print(&splayTree2);
+    printf("\n");
+    printf("Total Cost: %d\n", SplayTree_GetTotalCost(&splayTree2));
+
+    printf("\n\n");
 
     return 0;
 }

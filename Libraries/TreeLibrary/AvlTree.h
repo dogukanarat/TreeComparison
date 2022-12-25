@@ -27,6 +27,8 @@ typedef struct
 {
     bool isInitialized;
     AvlTreeNode* root;
+    int numberOfComparison;
+    int numberOfRotation;
 } AvlTree;
 
 // The AvlTree_Init function initializes an AvlTree struct.
@@ -41,6 +43,11 @@ void AvlTree_Insert(AvlTree* self, int32_t key, int32_t data);
 // The AvlTree_Find function finds a node in an AvlTree struct.
 int32_t AvlTree_Find(AvlTree* self, int32_t key);
 
+// AvlTree_Print prints tree preorder travelsal
+void AvlTree_Print(AvlTree *self);
+
+// AvlTree_GetTotalCost returns the total cost of the tree
+int AvlTree_GetTotalCost(AvlTree *self);
 
 #ifdef __cplusplus
 }

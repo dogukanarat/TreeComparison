@@ -20,6 +20,8 @@ typedef struct
 {
     bool isInitialized;
     SplayTreeNode* root;
+    int numberOfComparison;
+    int numberOfRotation;
 } SplayTree;
 
 // SplayTree_Init initializes a SplayTree struct.
@@ -33,6 +35,12 @@ void SplayTree_Insert(SplayTree* self, int32_t key, int32_t data);
 
 // SplayTree_Find finds a node in a SplayTree struct.
 int32_t SplayTree_Find(SplayTree* self, int32_t key);
+
+// SplayTree_Print prints a SplayTree preorder
+void SplayTree_Print(SplayTree* self);
+
+// SplayTree_GetTotalCost returns the total cost of the tree
+int SplayTree_GetTotalCost(SplayTree *self);
 
 #ifdef __cplusplus
 }

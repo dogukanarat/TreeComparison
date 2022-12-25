@@ -1,6 +1,7 @@
 #include "AvlTree.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 // The AvlTree_DestroyNode function destroys a node recursively.
 static inline AvlTreeNode* AvlTree_CreateNode(int32_t key, int32_t data);
@@ -18,7 +19,7 @@ static inline int AvlTree_GetBalanceFactor(AvlTreeNode* node);
 static inline void AvlTree_Balance(AvlTree* self);
 
 // The AvlTree_BalanceNode function balances a node.
-static inline AvlTreeNode* AvlTree_BalanceNode(AvlTreeNode* node);
+static inline AvlTreeNode* AvlTree_BalanceNode(AvlTree *self, AvlTreeNode* node);
 
 // The AvlTree_RotateLeftLeft function rotates a node to the left.
 static inline AvlTreeNode* AvlTree_RotateLeftLeft(AvlTreeNode* node);
@@ -115,7 +116,7 @@ int AvlTree_GetBalanceFactor(AvlTreeNode *node)
     return leftHeight - rightHeight;
 }
 
-AvlTreeNode *AvlTree_BalanceNode(AvlTreeNode *node)
+AvlTreeNode *AvlTree_BalanceNode(AvlTree *self, AvlTreeNode *node)
 {
     if (node == NULL)
     {
@@ -124,18 +125,20 @@ AvlTreeNode *AvlTree_BalanceNode(AvlTreeNode *node)
 
     if (node->left != NULL)
     {
-        node->left = AvlTree_BalanceNode(node->left);
+        node->left = AvlTree_BalanceNode(self, node->left);
     }
 
     if (node->right != NULL)
     {
-        node->right = AvlTree_BalanceNode(node->right);
+        node->right = AvlTree_BalanceNode(self, node->right);
     }
 
     int balanceFactor = AvlTree_GetBalanceFactor(node);
 
     if (balanceFactor > 1)
     {
+        self->numberOfRotation++;
+        
         if (AvlTree_GetBalanceFactor(node->left) > 0)
         {
             return AvlTree_RotateLeftLeft(node);
@@ -147,6 +150,8 @@ AvlTreeNode *AvlTree_BalanceNode(AvlTreeNode *node)
     }
     else if (balanceFactor < -1)
     {
+        self->numberOfRotation++;
+
         if (AvlTree_GetBalanceFactor(node->right) < 0)
         {
             return AvlTree_RotateRightRight(node);
@@ -164,7 +169,7 @@ void AvlTree_Balance(AvlTree *self)
 {
     AvlTreeNode *newroot = NULL;
 
-    newroot = AvlTree_BalanceNode(self->root);
+    newroot = AvlTree_BalanceNode(self, self->root);
 
     if (newroot != self->root)
     {
@@ -199,6 +204,8 @@ void AvlTree_Init(AvlTree *self)
     {
         self->isInitialized = TRUE;
         self->root = NULL;
+        self->numberOfRotation = 0;
+        self->numberOfComparison = 0;
     }
 }
 
@@ -251,10 +258,14 @@ void AvlTree_Insert(AvlTree *self, int32_t key, int32_t data)
 
             if (key < next->key)
             {
+                self->numberOfComparison++;
+
                 next = next->left;
             }
             else if (key > next->key)
             {
+                self->numberOfComparison++;
+
                 next = next->right;
             }
             else if (key == next->key)
@@ -339,15 +350,31 @@ int32_t AvlTree_GetNodeHeight(AvlTreeNode *node)
     }
 }
 
-// AvlTree_Print prints all subset of node to console stylish
+// AvlTree_Print prints tree node preorder travelsal
 void AvlTree_PrintNode(AvlTreeNode *node)
 {
-    
+    if(node != NULL)
+    {
+        printf("%d ", node->key);
+        AvlTree_PrintNode(node->left);
+        AvlTree_PrintNode(node->right);
+    }
 }
 
-// AvlTree_Print prints all tree node to console stylish
+// AvlTree_Print prints tree preorder travelsal
 void AvlTree_Print(AvlTree *self)
 {
+    AvlTree_PrintNode(self->root);
+}
 
+int AvlTree_GetTotalCost(AvlTree *self)
+{
+    int result = -1;
 
+    if( self != NULL && self->isInitialized )
+    {
+        result = self->numberOfRotation + self->numberOfComparison;
+    }
+
+    return result;
 }
